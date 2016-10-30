@@ -1,0 +1,49 @@
+//
+//  ViewController.m
+//  JXDynamicsDemo
+//
+//  Created by lixiaolong on 16/10/31.
+//  Copyright © 2016年 lixiaolong. All rights reserved.
+//
+
+
+#import "ViewController.h"
+#import "JXDynamics.h"
+//#import "TestView.h"
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    //setUpWithAnchor:inView: must be called after addSubview:
+    JXDynamics *dy = [[JXDynamics alloc] initWithFrame:CGRectMake(110, 200, 50, 50)];
+    [self.view addSubview:dy];
+    [dy setUpWithAnchor:CGPointMake(100, 100) inView:self.view];
+    
+    //Change line property
+    [dy setLineLength:30.f];
+    [dy setLineColor:[UIColor purpleColor]];
+    
+    //Add some subview
+    UILabel *label = [[UILabel alloc] initWithFrame:dy.bounds];
+    label.text = @"Hello";
+    label.textAlignment = NSTextAlignmentCenter;
+    [dy addSubview:label];
+    
+    //click Block
+    dy.tapBlock = ^{
+        NSLog(@"tap!");
+    };
+    
+//    TestView *dy = [[TestView alloc] initWithFrame:CGRectMake(110, 200, 50, 50)];
+//    [self.view addSubview:dy];
+//    [dy setUpWithAnchor:CGPointMake(100, 100) inView:self.view];
+}
+
+
+@end
